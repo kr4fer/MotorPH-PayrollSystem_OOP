@@ -1,34 +1,54 @@
-MotorPH Payroll System in MPHC02
+<h1>Rework MotorPH Payroll System </h1>
 
-This Java-based payroll system is developed for MotorPH to streamline employee management and automate weekly salary computations. It features integrated calculations for government-mandated deductions, including SSS, PhilHealth, Pag-IBIG, and withholding tax. The system is built using Java Swing for the graphical user interface (GUI) and utilizes text files for data storage and retrieval.
+<h3>Project Overview</h3>
+<ul>
+    <li><strong>Purpose:</strong> A Java-based payroll system for MotorPH to streamline employee management and automate salary computations.</li>
+    <li><strong>Tech Stack:</strong> Built using <strong>Java Swing</strong> for the GUI and <strong>CSV/Text files</strong> for data storage.</li>
+    <li><strong>Core Functions:</strong> Automated calculations for SSS, PhilHealth, Pag-IBIG, and Withholding Tax.</li>
+    <li><strong>Development Note:</strong> This specific branch is implemented using functional/procedural logic and <strong>does not follow OOP principles</strong>.</li>
+</ul>
 
-Note: This version supports more than three (3) employees only, identified by the following employee numbers: 10001, 10002, and 10003 and More.
+<h3>System Access & Control</h3>
+<p>The system features <strong>Role-Based Access Control</strong> to ensure data security:</p>
 
+<h4>1. Administrator</h4>
+<ul>
+    <li><strong>Username:</strong> admin</li>
+    <li><strong>Password:</strong> 1234</li>
+    <li><strong>Features:</strong> Full access to the Admin Dashboard to Create, Read, Update, and Delete (CRUD) employee records.</li>
+</ul>
 
+<h4>2. Regular Employee</h4>
+<ul>
+    <li><strong>Username:</strong> [Employee ID] (e.g., 10001)</li>
+    <li><strong>Password:</strong> [Last Name] (e.g., Garcia)</li>
+    <li><strong>Features:</strong> Access to personal information and the ability to view payslips.</li>
+</ul>
 
-System Access
+<h3>Key Features</h3>
+<ul>
+    <li><strong>Management Dashboard:</strong> A JTable view displaying essential fields: Employee Number, Last Name, First Name, SSS, PhilHealth, TIN, and Pag-IBIG numbers.</li>
+    <li><strong>Employee Viewer:</strong> Select an employee from the table to view their full professional profile in a new frame.</li>
+    <li><strong>Payroll Processing:</strong> Select a specific month to compute salary; the system displays both employee details and the final computed pay in one view.</li>
+    <li><strong>Real-time Updates:</strong> New employee data is appended to the CSV file, and the table refreshes automatically.</li>
+</ul>
 
-Username: admin
+<h3>Development Team</h3>
+<ul>
+    <li><strong>Rhynne Gracelle Pontanilla:</strong> Developed the JTable employee display and the "View Employee" detail frame.</li>
+    <li><strong>Carl Justine Pontanilla:</strong> Created the "New Employee" entry form and interface.</li>
+    <li><strong>Ghaby Gonzales:</strong> Implemented CSV data appending logic and modified the AddEmployee and Employee panels.</li>
+    <li><strong>Conrado Santos:</strong> Engineered the File Handler (Read/Write) and the Salary Computation engine with month selection.</li>
+</ul>
 
-Password: 1234
+<h3>New Developer (Adds Feature)</h3>
+<ul>
+    <li><strong>Sunny Eljohn Lico:</strong> Rework the Log in feature to a simple Role Base and Dashboards and currently working to add OOP Principles</li>
+</ul>
 
-
-(Development Team)
-
-Rhynne Gracelle Pontanilla -
-Add a form or frame that displays the following fields for all employees in a JTable: Employee Number, Last Name, First Name, SSS Number, PhilHealth Number, TIN, and Pag-IBIG Number.
-Allow the user to select an employee from the table and click the "View Employee" button to open a new frame displaying the employee’s full details.
-
-Carl Justine Pontanilla - 
-Add a "New Employee" button that opens a form for entering new employee information.
-
-Ghaby Gonzales – 
-Upon submission, the new employee’s data should be appended to the CSV file, and the JTable should refresh to show the updated list of employees./ Modified Addemployeepanel & Employeepanel.
-
-Conrado Santos – 
-File handler, Write, read,all etc /  In the new frame, prompt the user to select the month for which the program will compute the employee’s salary.
-After clicking the "Compute" button, display both the employee’s details and the computed salary information within the same frame.
-
-
-<< Continued by the Following Devlopment Team in Coordination with Object Oriented Programming Subject >> 
-
+<h3>How to Run</h3>
+<ul>
+    <li>Open the project in a Java IDE.</li>
+    <li>Ensure the CSV data file is in the correct directory.</li>
+    <li>Run the application and use the credentials listed in the System Access section.</li>
+</ul>
