@@ -30,6 +30,7 @@ public class EmployeePanel extends JPanel {
     private final FileHandler fileHandler;
     // Declares an EmployeeTable to display employee data
     private final EmployeeTable dashboardTable;
+    private Object table;
     
     
     
@@ -372,15 +373,27 @@ public class EmployeePanel extends JPanel {
 
     // Displays full employee details in a new panel
     private void showSelectedEmployeeDetails() {
+        // Get the data from the dashboardTable
         Vector<Object> selected = dashboardTable.getSelectedEmployeeFullDetails();
         if (selected == null || selected.isEmpty()) {
-            showCustomMessage("Please select an employee first.", "Message");
-            return;
-        }
-       
-
-        new ViewEmployeePanel(selected);// Opens a new window showing employee details
-        }
+//            showCustomMessage("Please select an employee first.", "Message");
+//            return;
+        // Open the detail window (This is what was failing)
+//        ViewEmployeePanel viewWindow = new ViewEmployeePanel(selected);
+//        viewWindow.setVisible(true); 
+        // Creating Window and Drop Panel inside it
+        JFrame frame = new JFrame("Employee Details");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        
+        // add existing panel
+        frame.add(new ViewEmployeePanel(selected));
+        
+        // Popping Up
+        frame.setSize(600, 700);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+ }
         private void showCustomMessage(String message, String title) {
         JDialog customDialog = new JDialog((Frame) SwingUtilities.getWindowAncestor(this), title, true);
         customDialog.setSize(400, 260);
@@ -516,4 +529,12 @@ public class EmployeePanel extends JPanel {
         g2d.setPaint(new GradientPaint(0, 0, gradientStart, 0, getHeight(), gradientEnd));
         g2d.fillRect(0, 0, getWidth(), getHeight());
     }
+    // REPLACING THE BROKEN METHOD AT THE BOTTOM
+    public EmployeeTable getDashboardTable() {
+        return this.dashboardTable; 
+    }
 }
+ //   Object getDashboardTable() {
+ //       return this.dashboardTable; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+ //   }
+// }

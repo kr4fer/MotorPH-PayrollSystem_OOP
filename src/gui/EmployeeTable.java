@@ -274,6 +274,7 @@ public class EmployeeTable extends JPanel {
     // Retrieves full details of selected employee based on selected row
     public Vector<Object> getSelectedEmployeeFullDetails() {
         int selectedRow = table.getSelectedRow();
+        
         if (selectedRow == -1) return null;
 
         int modelRow = table.convertRowIndexToModel(selectedRow);

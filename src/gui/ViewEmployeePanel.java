@@ -32,7 +32,6 @@ public class ViewEmployeePanel extends JPanel {
 
     public ViewEmployeePanel(Vector<Object> employeeData) {
         setLayout(new BorderLayout());
-        
 
         // ===== LEFT PANEL =====
         JPanel leftPanel = new JPanel(new GridBagLayout()) {
@@ -276,7 +275,8 @@ public class ViewEmployeePanel extends JPanel {
         splitPane.setOneTouchExpandable(true);
         add(splitPane);
         add(splitPane, BorderLayout.CENTER);
-        setVisible(true);
+//        setVisible(true);
+        initComponents();
     }
 
     private double safeParseDouble(String value) {
@@ -337,4 +337,23 @@ public class ViewEmployeePanel extends JPanel {
             }
         };
     }        
+    void toFront() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+   
+//    public void setDefaultCloseOperation(int operation) {
+//        throw new UnsupportedOperationException("Not supported yet"); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//    }
+
+    private void setTitle(String employee_Information) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+//    private void setLocationRelativeTo(Object object) {
+//       throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//   }
+
+    private void initComponents() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

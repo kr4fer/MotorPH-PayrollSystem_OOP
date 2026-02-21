@@ -20,6 +20,7 @@ import java.awt.event.MouseEvent;
 
 // Imports the URL class, used for locating resources such as images or files on the web or locally
 import java.net.URL;
+import java.util.Vector;
 
 // Imports the FileHandler class from the 'model' package
 // Typically used for file operations (e.g., reading/writing employee or attendance data)
@@ -36,7 +37,7 @@ public class DashboardPanel extends JFrame {
     private final CardLayout cardLayout = new CardLayout();
 
     // Panel that contains different views (e.g., Employee, Attendance, Payroll)
-    JPanel contentPanel = new JPanel(); 
+    private JPanel contentPanel = new JPanel(); 
 
     // Panels for displaying employee and payroll data
     private final EmployeePanel employeePanel = new EmployeePanel();
@@ -111,6 +112,22 @@ public class DashboardPanel extends JFrame {
         navPanel.add(Box.createVerticalStrut(5));
 //        navPanel.add(payrollBtn);
 
+        // Payslip Button (New Feature)
+        JButton adminPrintBtn = createNavButton("Print Payslip", "printer.png");
+        adminPrintBtn.addActionListener(e -> {
+            // We explicitly cast it to EmployeeTable to avoid the "Object cannot be converted" error
+            EmployeeTable table = (EmployeeTable) employeePanel.getDashboardTable();
+            java.util.Vector<Object> selected = table.getSelectedEmployeeFullDetails();
+
+            if (selected != null) {
+                new PayslipFrame(selected);
+            } else {
+                JOptionPane.showMessageDialog(this, "Please select an employee first!");
+            }
+        });
+        navPanel.add(adminPrintBtn);
+        navPanel.add(Box.createVerticalStrut(5));
+
         // Log-out button setup
         JButton logoutButton = createNavButton("Log-out", "logout.png");
         logoutButton.setForeground(Color.GRAY);
@@ -142,11 +159,8 @@ public class DashboardPanel extends JFrame {
         // Add all panels to the card layout
         contentPanel.add(employeePanel, "Employee");
 
-
-      
         employeeBtn.addActionListener(e -> cardLayout.show(contentPanel, "Employee"));
        
-
         // Add sidebar and main content to the frame
         add(sidebar, BorderLayout.WEST);
         add(contentPanel, BorderLayout.CENTER);
