@@ -1,15 +1,15 @@
-<h1>MotorPH Payroll System (MPHC02)</h1>
+<h1>MotorPH Payroll System</h1>
 
 <h3>Project Overview</h3>
 <ul>
     <li><strong>Purpose:</strong> A Java-based payroll system for MotorPH to streamline employee management and automate salary computations.</li>
     <li><strong>Tech Stack:</strong> Built using <strong>Java Swing</strong> for the GUI and <strong>CSV/Text files</strong> for data storage.</li>
     <li><strong>Core Functions:</strong> Automated calculations for SSS, PhilHealth, Pag-IBIG, and Withholding Tax.</li>
-    <li><strong>Development Note:</strong> This version of the system has been updated to follow <strong>Object-Oriented Programming (OOP) Principles</strong>.</li>
+    <li><strong>Development Note:</strong> This system has been successfully transitioned from procedural logic to a full <strong>Object-Oriented Programming (OOP)</strong> architecture, with a primary focus on <strong>Abstraction</strong> and <strong>Encapsulation</strong>.</li>
 </ul>
 
-<h3>System Access & Control</h3>
-<p>The system features <strong>Role-Based Access Control</strong> to ensure data security:</p>
+<h3>System Access & User Credentials</h3>
+<p>The system utilizes a login mechanism to direct specific users to their respective dashboards:</p>
 
 <h4>1. Administrator</h4>
 <ul>
@@ -22,97 +22,86 @@
 <ul>
     <li><strong>Username:</strong> [Employee ID] (e.g., 10001)</li>
     <li><strong>Password:</strong> [Last Name] (e.g., Garcia)</li>
-    <li><strong>Features:</strong> Access to personal information and the ability to print their own individual payslips.</li>
+    <li><strong>Features:</strong> Access to personal information and the ability to view/print their individual payslips.</li>
 </ul>
 
 <h3>Key Features & Updates</h3>
 <ul>
     <li><strong>Management Dashboard:</strong> A JTable view displaying Employee Number, Last Name, First Name, SSS, PhilHealth, TIN, and Pag-IBIG numbers.</li>
-    <li><strong>Employee Viewer:</strong> Admins can now fully view comprehensive employee records and detailed profiles.</li>
-    <li><strong>Payroll Processing:</strong> Select a specific month to compute salary; displays employee details and computed pay in a single view.</li>
-    <li><strong>Printing System:</strong> The issue regarding payslip printing with calculations has been resolved. Both Admins and Employees can now successfully print accurate payslips.</li>
-    <li><strong>Real-time Updates:</strong> New employee data is appended to the CSV file, and the table refreshes automatically.</li>
+    <li><strong>Full Employee Records:</strong> Admins can now fully check comprehensive employee data and detailed professional profiles.</li>
+    <li><strong>Payroll Processing:</strong> Monthly salary computation engine that displays employee details and computed net pay in a single view.</li>
+    <li><strong>Updated Printing System:</strong> Fixed and updated the payslip printing feature; calculations are now fully integrated and accurate for all users.</li>
+    <li><strong>Real-time CSV Integration:</strong> Data is read from and appended to CSV files, ensuring the dashboard refreshes automatically upon submission.</li>
 </ul>
 
-<h3>OOP Implementation Details</h3>
+<h3>Core OOP Principles Applied</h3>
 
-<h4>1. Encapsulation (Data Security & Integrity)</h4>
+
 <ul>
-    <li><strong>Private Fields:</strong> In <code>Benefits.java</code> and <code>Attendance.java</code>, data fields are marked as private to prevent unauthorized tampering.</li>
-    <li><strong>Getters/Setters:</strong> Access to private fields is controlled via public methods (e.g., <code>getRiceSubsidy()</code>).</li>
-    <li><strong>Validation Logic:</strong> The <code>setBasicSalary</code> method in <code>Employee.java</code> ensures values cannot be negative.</li>
-    <li><strong>Implementation Hiding:</strong> In <code>Deductions.java</code>, complex tax formulas are kept internal; the system only calls <code>getTotalDeductions()</code>.</li>
+    <li><strong>Encapsulation (Primary Focus):</strong> Used in <code>Benefits.java</code>, <code>Employee.java</code>, and <code>Deductions.java</code>.
+        <ul>
+            <li><strong>Data Integrity:</strong> All sensitive data fields are marked <code>private</code> to prevent unauthorized modification.</li>
+            <li><strong>Controlled Access:</strong> Public getters and setters act as gates, including validation logic (e.g., preventing negative salary inputs) to maintain system stability.</li>
+        </ul>
+    </li>
 </ul>
 
-<h4>2. Abstraction (The Blueprinting)</h4>
+
 <ul>
-    <li><strong>Interfaces:</strong> <code>IPayable.java</code> defines the contract that any payable entity must have a <code>calculateGrossPay()</code> method.</li>
-    <li><strong>Abstract Classes:</strong> <code>Employee.java</code> is an abstract class that cannot be instantiated on its own.</li>
-    <li><strong>Abstract Methods:</strong> <code>calculateGrossPay()</code> is abstract, forcing subclasses to provide their own math logic.</li>
+    <li><strong>Abstraction (Primary Focus):</strong> Implemented via <code>IPayable.java</code> (interface) and <code>Employee.java</code> (abstract class).
+        <ul>
+            <li><strong>Blueprinting:</strong> Defines "what" the payroll system does (e.g., <code>calculateGrossPay()</code>) without cluttering the main logic with "how" it does it.</li>
+            <li><strong>Reduced Complexity:</strong> Complex government deduction matrices are hidden behind simple method calls, making the code easier to maintain.</li>
+        </ul>
+    </li>
+    <li><strong>Inheritance:</strong> <code>RegularEmployee.java</code> extends the <code>Employee</code> class, utilizing <code>super()</code> to reuse code for identity and salary fields.</li>
+    <li><strong>Polymorphism:</strong> Method overriding and dynamic binding in <code>PayrollLogic.java</code> allows the system to process different employee types flexibly at runtime.</li>
 </ul>
 
-<h4>3. Inheritance (Code Reusability)</h4>
-<ul>
-    <li><strong>Subclassing:</strong> <code>RegularEmployee.java</code> extends the <code>Employee</code> class to inherit properties like ID and Name.</li>
-    <li><strong>Constructor Reuse:</strong> Uses <code>super()</code> to initialize identity fields consistently in the parent class.</li>
-</ul>
-
-<h4>4. Polymorphism (Flexibility)</h4>
-<ul>
-    <li><strong>Method Overriding:</strong> <code>RegularEmployee</code> overrides <code>calculateGrossPay()</code> for specific salaried staff math.</li>
-    <li><strong>Dynamic Binding:</strong> <code>PayrollLogic.java</code> uses <code>processNetPay(Employee emp)</code> to handle any employee type at runtime.</li>
-</ul>
-
-
-
-<h3>OOP Summary Table</h3>
-<table border="1" style="width:100%; border-collapse: collapse;">
-    <thead>
-        <tr style="background-color: #f2f2f2;">
-            <th>OOP Principle</th>
-            <th>Found in File(s)</th>
-            <th>Specific Implementation</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><strong>Encapsulation</strong></td>
-            <td>Benefits.java, Employee.java, Deductions.java</td>
-            <td>Private fields, public getters/setters, and logic validation.</td>
-        </tr>
-        <tr>
-            <td><strong>Abstraction</strong></td>
-            <td>IPayable.java, Employee.java</td>
-            <td>Interface IPayable and public abstract class Employee.</td>
-        </tr>
-        <tr>
-            <td><strong>Inheritance</strong></td>
-            <td>RegularEmployee.java</td>
-            <td>class RegularEmployee extends Employee and super().</td>
-        </tr>
-        <tr>
-            <td><strong>Polymorphism</strong></td>
-            <td>RegularEmployee.java, PayrollLogic.java</td>
-            <td>@Override calculateGrossPay() and processNetPay(Employee emp).</td>
-        </tr>
-    </tbody>
+<h3>OOP Implementation Summary</h3>
+<table border="1" style="width:100%; border-collapse: collapse; text-align: left;">
+    <tr style="background-color: #f2f2f2;">
+        <th>OOP Principle</th>
+        <th>File(s) Involved</th>
+        <th>Specific Implementation</th>
+    </tr>
+    <tr>
+        <td><strong>Encapsulation</strong></td>
+        <td>Benefits.java, Employee.java, Deductions.java</td>
+        <td>Private fields, public getters/setters, and internal validation logic.</td>
+    </tr>
+    <tr>
+        <td><strong>Abstraction</strong></td>
+        <td>IPayable.java, Employee.java</td>
+        <td>Use of <code>interface</code> and <code>abstract</code> methods to define payroll contracts.</td>
+    </tr>
+    <tr>
+        <td><strong>Inheritance</strong></td>
+        <td>RegularEmployee.java</td>
+        <td>Reuse of parent constructor and attributes via <code>extends</code>.</td>
+    </tr>
+    <tr>
+        <td><strong>Polymorphism</strong></td>
+        <td>PayrollLogic.java</td>
+        <td>Dynamic binding to process generic <code>Employee</code> objects.</td>
+    </tr>
 </table>
 
 <h3>Development Tracking</h3>
 <ul>
-    <li><strong>Sunny Eljohn Lico:</strong> 
+    <li><strong>Sunny Eljohn Lico:</strong>
         <ul>
-            <li>Reworked the Login feature to support Role-Based access control and Dashboards.</li>
-            <li>Fixed and updated the <strong>Payslip Printing feature</strong> with accurate calculations.</li>
-            <li>Enhanced Admin capabilities to allow full record viewing and multi-employee payslip printing.</li>
-            <li>Successfully transitioned the entire codebase to <strong>OOP Principles</strong>.</li>
+            <li>Reworked the Login system and Dashboard redirection for specific users.</li>
+            <li>Resolved calculation bugs and updated the <strong>Payslip Printing feature</strong>.</li>
+            <li><strong>Lead Architect:</strong> Successfully transitioned the procedural codebase into an <strong>OOP architecture</strong>, specifically prioritizing <strong>Abstraction</strong> and <strong>Encapsulation</strong> for security and scalability.</li>
+            <li>Enabled full employee record checking for the Admin dashboard.</li>
         </ul>
     </li>
 </ul>
 
 <h3>How to Run</h3>
 <ul>
-    <li>Open the project in a Java IDE.</li>
-    <li>Ensure the CSV data file is in the correct directory.</li>
-    <li>Run the application and use the credentials listed in the System Access section.</li>
+    <li>Open the project in a Java IDE (e.g., NetBeans, IntelliJ, or Eclipse).</li>
+    <li>Ensure the <code>.csv</code> data file is located in the root project directory.</li>
+    <li>Run the application and use the credentials provided in the <strong>System Access</strong> section.</li>
 </ul>
